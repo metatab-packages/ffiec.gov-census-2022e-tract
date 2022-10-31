@@ -1,0 +1,69 @@
+Declare,metatab-latest
+Title,"Distressed Housing Tracts, 2022 on"
+Description,"An extract of a subset of columns from the FFIEC Census Flat File, including"
+Description,flags that indicate a tract is distressed.
+Identifier,f0234344-8376-41ba-a62a-4a1c966366fe
+Name,ffiec.gov-census-2022e-tract-1.1.1
+Dataset,census
+Origin,ffiec.gov
+Time,2022e
+Space,
+Grain,tract
+Variant,
+Version,1.1.1
+Version.Major,1
+Version.Minor,1
+Version.Patch,1
+Created,2020-05-26T18:06:28
+Modified,2022-10-31T16:19:44
+Giturl,https://github.com/metatab-packages/ffiec.gov-census-2022e-tract.git
+""
+Section,Contacts,Email,Organization,Url,
+Wrangler,Eric Busboom,eric@civicknowledge.com,Civic Knowledge,http://civicknowledge.com,
+""
+Section,Documentation,Title,Description,,
+Documentation,file:README.md,README,,,
+Homepage,https://www.ffiec.gov/censusapp.htm,homepage,,,
+Documentation,https://www.ffiec.gov/Census/Census_Flat_Files/cen2022_26AUG22.pdf,File information,"Description of the 2022 census file, including all columns. Other years are similar",,
+Datadictionary,https://www.ffiec.gov/Census/Census_Flat_Files/FFIEC_Census_File_Definitions_26AUG22.xlsx,Data Dictionary,An Excel file with column positions and descriptions,,
+""
+Section,References,Name,Description,,
+Reference,https://www.ffiec.gov/Census/Census_Flat_Files/CensusFlatFile2022.zip#*.csv,ffiec_census_2022,2022 Census Flat File,,
+""
+Section,Resources,Name,Description,,
+Datafile,python:pylib#row_generator,ffiec_distressed,Distressed tracts,,
+Datafile,notebooks/extract.ipynb,ffeic_distressed_extract,An extract of the ffiec_distressed with fewer columns,,
+""
+Section,Schema,DataType,col_pos,Description,
+Table,ffiec_distressed,,,,
+Table.Column,geoid,string,,ACS Geoid for tract,
+Table.Column,year,integer,1,Key field.  HMDA/CRA collection year,
+Table.Column,msa_md_code,integer,2,Key field.  MSA/MD Code,
+Table.Column,state,integer,3,Key field.  FIPS state code,
+Table.Column,county,integer,4,Key field.  FIPS county code,
+Table.Column,tract,integer,5,Key field.  Census tract. Implied decimal point.,
+Table.Column,principal_city_flag,integer,6,Principal city flag. 0=not principal city  1=principal city,
+Table.Column,small_county_flag,string,7,Small county flag. T=tract record  S=small county  I=Island Area,
+Table.Column,split_tract_flag,string,8,Split tract flag. N=tract number occurs w/in one MA  S=split between MAs,
+Table.Column,demo_flag,string,9,Demographic data flag. X=Tot persons/population or median family income is 0  D=tot persons/population and median family income are not 0   I=Island Area,
+Table.Column,urban_rural_flag,string,10,Urban/rural flag. U=urban R=rural  M=mixed  I=Island Area,
+Table.Column,msa_family_income,integer,11,Median Family Income of MSA in which tract resides,
+Table.Column,msa_household_income,integer,12,Median Household Income of MSA in which tract resides,
+Table.Column,tract_household_income,integer,377,Median household income for tract.,
+Table.Column,tract_family_income_pct,number,13,"Tract median family income as a percentage of the MSA/MD median family income. Two decimal places, truncated.",
+Table.Column,ffiec_median_income,integer,14,FFIEC Estimated MSA/MD Median Family Income,
+Table.Column,population,integer,15,Total persons,
+Table.Column,families,integer,16,Total families,
+Table.Column,households,integer,17,Total households,
+Table.Column,female,integer,18,Total female population,
+Table.Column,male,integer,19,Total male population,
+Table.Column,nonwhite,integer,20,Total population minus white alone population,
+Table.Column,minority_percent,integer,21,Minority population as percent of tract population rounded to two decimal places,
+Table.Column,income_level,integer,1205,"Identifies Income Level Indicator (low, mod, mid, upper income areas)",
+Table.Column,poverty_distressed,string,1206,"Meets current year's poverty CRA distressed criterion?  'X' - Yes , ' ' (blank space) - No",
+Table.Column,unemployment_distressed,string,1207,"Meets current year's unemployment CRA distressed criterion?  'X' - Yes , ' ' (blank space) - No",
+Table.Column,population_distressed,string,1208,"Meets current year's population CRA distressed criterion?  'X' - Yes , ' ' (blank space) - No",
+Table.Column,rural_underserved,string,1209,"Meets current year's remote rural (low density) CRA underserved criterion?  'X' -Yes, ' ' (blank space) - No",
+Table.Column,last_year_distressed,string,1210,"Meets at least one of the previous year's CRA distressed criteria?  'X' - Yes , ' ' (blank space) - No",
+Table.Column,last_year_underserved,string,1211,"Meets previous year's CRA underserved criterion?  'X' - Yes , ' ' (blank space) - No",
+Table.Column,current_prior_distressed,string,1212,"Meets at least one of current or previous year's CRA distressed/underserved tract criteria?  'X' - Yes, ' ' (blank space) - No",
